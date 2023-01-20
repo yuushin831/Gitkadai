@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include "TestSingletion.h"
 
 // ウィンドウのタイトルに表示する文字列
 const char TITLE[] = "xx2x_xx_ナマエ: タイトル";
@@ -51,6 +52,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	// ゲームループ
 	while (true) {
 		// 最新のキーボード情報だったものは1フレーム前のキーボード情報として保存
+		for (int i = 0; i < 256; i++)
+		{
+			oldkeys[i] = keys[i];
+		}
 		// 最新のキーボード情報を取得
 		GetHitKeyStateAll(keys);
 
@@ -59,7 +64,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//---------  ここからプログラムを記述  ----------//
 
 		// 更新処理
-
+		TestSingletion::GetInstance()->ChangeScene(keys, oldkeys);
 
 		// 描画処理
 
